@@ -24,4 +24,4 @@ jobs:
         docker tag next ${{ secrets.DOCKER_USER }}/next:latest
     - name: Push to docker hub
       run : |   
-        docker push ${{ secrets.DOCKER_USER }}/nextjs:latest
+        docker push ${{ secrets.DOCKER_USER }}/next:latest
