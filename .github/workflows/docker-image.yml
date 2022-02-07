@@ -20,8 +20,8 @@ jobs:
       run: docker build -t next:latest .
     - name: Tags
       run: |
-        docker tag myblog-new ${{ secrets.DOCKER_USER }}/next${{ github.sha }}
-        docker tag myblog-new ${{ secrets.DOCKER_USER }}/next:latest
+        docker tag next ${{ secrets.DOCKER_USER }}/next${{ github.sha }}
+        docker tag next ${{ secrets.DOCKER_USER }}/next:latest
     - name: Push to docker hub
       run : |   
         docker push ${{ secrets.DOCKER_USER }}/nextjs:latest
