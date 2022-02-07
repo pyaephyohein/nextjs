@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker login
+      run : docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build the Docker image
+      run: docker build -t myblog-new:latest .
+    - name: Tags
+      run: |
+        docker tag myblog-new ${{ secrets.DOCKER_USER }}/next${{ github.sha }}
+        docker tag myblog-new ${{ secrets.DOCKER_USER }}/next:latest
+    - name: Push to docker hub
+      run : |   
+        docker push ${{ secrets.DOCKER_USER }}/nextjs:latest
