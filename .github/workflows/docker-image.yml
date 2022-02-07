@@ -17,7 +17,7 @@ jobs:
     - name: Docker login
       run : docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Build the Docker image
-      run: docker build -t myblog-new:latest .
+      run: docker build -t next:latest .
     - name: Tags
       run: |
         docker tag myblog-new ${{ secrets.DOCKER_USER }}/next${{ github.sha }}
